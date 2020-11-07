@@ -1,0 +1,280 @@
+
+<?php 
+include 'conn.php';
+
+if(isset($_POST['done'])){
+
+$name=$_POST['name'];
+$username=$_POST['username'];
+$password=$_POST['password'];
+
+
+$q=" INSERT INTO  `table` (`name`,`username`,`password`) VALUES ('$name','$username','$password')";
+
+$query=mysqli_query($conn,$q);
+
+}
+
+ ?>
+
+
+<!DOCTYPE html>
+
+
+<html>
+
+
+<head>
+  <title>Sign Up page</title>
+  
+  <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="stylesheet" type="text/css" href="login.css">
+ 
+
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+ 
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+
+
+
+
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+
+
+
+ 
+
+ 
+
+
+  </script>
+</head>
+
+<body>
+ <!--section>
+
+
+  <nav class="navbar navbar-expand-lg navbar-light">
+  <a class="navbar-brand" href="#">RESUME BUILDER</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarText">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Features</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Pricing</a>
+      </li>
+    </ul>
+    <span class="navbar-text">
+      Navbar text with an inline element
+    </span>
+  </div>
+</nav>
+
+
+
+
+
+</section-->
+
+<section>
+
+<div class="row">
+<div class="col-sm-9 col-md-6 col-lg-6">
+<div  data-aos="fade-left" data-aos-delay="200">
+          <img src="login.gif" class="img-fluid animated" alt=""></div></div>
+  
+<div class="login" class="col-sm-9 col-md-6 col-lg-4">
+
+
+
+
+
+  <h2>Sign Up</h2>
+
+  
+  
+<div ><br>
+    
+    <div>
+      
+      <form action="" onsubmit="return validation()" class="bg-light">
+        
+        <!--div>
+          <label for="name"> </label>
+          <input type="text" name="name" class="form-control" id="name">
+          
+        </div-->
+         <div class="form-group">
+          <label > Full Name:</label>
+          <input type="text" name="name" class="form-control" id="name" >
+          <span id="username" class="text-danger font-weight-bold"> </span>
+          
+        </div>
+         <div class="form-group">
+          <label > Phone Number </label>
+          <input type="text" name="pn" class="form-control" id="pn" >
+          <span id="mobileno" class="text-danger font-weight-bold"> </span>
+          
+        </div>
+
+        <div class="form-group">
+          <label > Email </label>
+          <input type="text" name="mail" class="form-control" id="mail" >
+          <span id="emailids" class="text-danger font-weight-bold"> </span>
+          
+        </div>
+        <div>
+          <label for="pasw"> Password</label>
+          <input type="text" name="name" class="form-control" id="pasw">
+          <span id="passwords" class="text-danger font-weight-bold"> </span>
+          
+        </div>
+        <div>
+          <label for="pasw"> Repeat Password </label>
+          <input type="text" name="name" class="form-control" id="rp_pasw">
+          <span id="confrmpass" class="text-danger font-weight-bold"> </span>
+          
+        </div>
+
+
+        <br>
+        <button id="sub" type="submit" name="submit"> Sign Up</button>
+
+      <div class="check">
+            <input type="checkbox" checked="checked" name="check">
+      <label>Remember me</label>
+      <br></div>  
+
+<br><br>
+    <button class="btn bg-light" >
+      Login with Google
+    </button>
+  </form>
+      
+
+    </div>
+    
+  </div></div></div>
+  </div>
+
+</section>
+
+
+<script type="text/javascript">
+    
+
+    function validation(){
+
+      var user = document.getElementById('name').value;
+      var mobileNumber = document.getElementById('pn').value;
+      var emails = document.getElementById('mail').value;
+      var pass = document.getElementById('pasw').value;
+      var confirmpass = document.getElementById('rp_pasw').value;
+      
+
+
+
+ 
+
+      if(user == ""){
+        document.getElementById('username').innerHTML =" ** Please fill the username field";
+        return false;
+      }
+      if((user.length <= 2) || (user.length > 20)) {
+        document.getElementById('username').innerHTML =" ** Username lenght must be between 2 and 20";
+        return false; 
+      }
+      if(!isNaN(user)){
+        document.getElementById('username').innerHTML =" ** only characters are allowed";
+        return false;
+      }
+
+
+      if(mobileNumber == ""){
+        document.getElementById('mobileno').innerHTML =" ** Please fill the mobile NUmber field";
+        return false;
+      }
+      if(isNaN(mobileNumber)){
+        document.getElementById('mobileno').innerHTML =" ** user must write digits only not characters";
+        return false;
+      }
+      if(mobileNumber.length!=10){
+        document.getElementById('mobileno').innerHTML =" ** Mobile Number must be 10 digits only";
+        return false;
+      }
+
+
+      if(emails == ""){
+        document.getElementById('emailids').innerHTML =" ** Please fill the email idx` field";
+        return false;
+      }
+      if(emails.indexOf('@') <= 0 ){
+        document.getElementById('emailids').innerHTML =" ** @ Invalid Position";
+        return false;
+      }
+
+      if((emails.charAt(emails.length-4)!='.') && (emails.charAt(emails.length-3)!='.')){
+        document.getElementById('emailids').innerHTML =" ** . Invalid Position";
+        return false;
+      }
+
+
+
+
+
+
+
+      if(pass == ""){
+        document.getElementById('passwords').innerHTML =" ** Please fill the password field";
+        return false;
+      }
+      if((pass.length <= 5) || (pass.length > 20)) {
+        document.getElementById('passwords').innerHTML =" ** Passwords lenght must be between  5 and 20";
+        return false; 
+      }
+
+
+      if(pass!=confirmpass){
+        document.getElementById('confrmpass').innerHTML =" ** Password does not match the confirm password";
+        return false;
+      }
+
+
+
+      if(confirmpass == ""){
+        document.getElementById('confrmpass').innerHTML =" ** Please fill the confirmpassword field";
+        return false;
+      }
+
+
+
+
+      
+
+
+
+      
+    }
+
+  </script>
+
+
+
+</body>
+
+</html>
